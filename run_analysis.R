@@ -11,29 +11,37 @@ run_analysis <- function(){
   library(Hmisc); library(dplyr); library(tidyr)
   
   # Verifies that the directories and datasets exist
-  if (!file.exists("test")) {
-    stop("the 'test' directory does not exist")
+  if (!file.exists("activity_labels.txt")) {
+    stop("activity_labels.txt does not exist")
   }
   
-  else if (!file.exists("train")) {
-    stop ("The 'train' directory does not exist")
+  else if (!file.exists("features.txt")) {
+    stop ("features.txt does not exist")
   }
   
-  else if (length(list.files("test")) == 0) {
-    stop ("There are no files in the 'test' directory")
+  else if (!file.exists("X_test.txt")) {
+    stop ("X_test.txt does not exist")
   }
 
-  else if (length(list.files("train")) == 0) {
-    stop ("There are no files in the 'train' directory")
+  else if (!file.exists("y_test.txt")) {
+    stop ("y_test.txt does not exist")
+  }
+  
+  else if (!file.exists("X_train.txt")) {
+    stop ("X_train.txt does not exist")
+  }
+
+  else if (!file.exists("y_train.txt")) {
+    stop ("y_train.txt does not exist")
   }
   
   # Import files files
   actLabelFile <- "activity_labels.txt"
   varNamesFile <- "features.txt"
-  testDataFile <-"test/X_test.txt"
-  testLabelFile <-"test/y_test.txt"
-  trainDataFile <-"train/X_train.txt"
-  trainLabelFile <-"train/y_train.txt"
+  testDataFile <-"X_test.txt"
+  testLabelFile <-"y_test.txt"
+  trainDataFile <-"X_train.txt"
+  trainLabelFile <-"y_train.txt"
   
   # Convert files to data frames
   activity_label <- read.table(actLabelFile, sep = " ", col.names = c("id","activityNames"))
